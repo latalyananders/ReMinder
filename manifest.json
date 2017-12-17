@@ -1,0 +1,23 @@
+{
+"manifest_version": 2,
+"name": "ReMinder",
+"description": "~There is no description~",
+"version": "1.1",
+"icons": {
+	"128": "128.png"
+}, 
+"background": {
+	"scripts": ["scripts/vue.js", "scripts/axios.min.js", "scripts/background.js"],
+
+	"persistent": false
+},
+"browser_action": {
+	"default_title": "ReMinder", 
+	"default_popup": "popup.html" 
+},
+"permissions": [
+	"unlimitedStorage",
+	"notifications",
+	"cookies"
+]
+}
