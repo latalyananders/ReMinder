@@ -1,6 +1,6 @@
 var app = new Vue({
     data: {
-        url: 'http://reminder.ddns.net/query',
+        url: 'http://reminder.ddns.net/checkauth',
         enable: true
     },
     created: function() {
