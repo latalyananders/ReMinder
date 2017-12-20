@@ -16,30 +16,16 @@ var app = new Vue({
             username: this.username,
             password: this.password,
             scope: ''
-        }
+        };
 
-        axios.post('http://reminder.ddns.net/oauth/token', data)
-            .then(function (response) {
-                component.setToken(response.data.access_token, response.data.expires_in + Date.now())
-
-                axios.get('http://reminder.ddns.net/api/checkauth', {
-                    headers: {
-                        Authorization: "Bearer " + component.getToken()
-                    }
-                })
-                    .then(function(response) {
-                        console.log(response);
-                    })
-            })
-        // console.log(this);
-        // setInterval(function cycle() {
-        //     if (component.enable)
-        //         axios.get(component.url)
-        //             .then(function (response) {
-        //                 console.log(response.data)
-        //             })
-        //
-        // }, 5000)
+        if(!component.isAuthenticated())
+            axios.post('http://reminder.ddns.net/oauth/token', data)
+                .then(function (response) {
+                    component.setToken(response.data.access_token, response.data.expires_in + Date.now())
+                    component.startCheck();
+                });
+        else
+            component.startCheck();
     },
     methods:{
         setToken(token, expiration){
@@ -69,6 +55,30 @@ var app = new Vue({
                 return true;
             else
                 return false;
+        },
+
+        startCheck(){
+            component = this;
+            console.log(this);
+            setInterval(function cycle() {
+                if (component.enable)
+                    axios.get('http://reminder.ddns.net/api/query', {
+                        headers: {
+                            Authorization: "Bearer " + component.getToken()
+                        }
+                    })
+                        .then(function(response) {
+                            console.log(response);
+                        })
+
+            }, 5000)
+        },
+
+        login(){
+            axios.post('http://reminder.ddns.net/oauth/token', data)
+                .then(function (response) {
+                    component.setToken(response.data.access_token, response.data.expires_in + Date.now())
+                });
         }
     }
 });
