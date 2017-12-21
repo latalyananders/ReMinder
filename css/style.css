@@ -28,6 +28,10 @@ body{
     width: 70%; !important;
 }
 
+.btn-primary{
+    background-color: black; !important;
+}
+
 .sub{
     background-color: red; !important;
     margin: 3px; !important;
