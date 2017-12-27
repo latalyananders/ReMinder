@@ -2,6 +2,7 @@ body{
     text-align: center;
     width: 300px;
     background-color: #fcfcfc;
+    font-family: 'Raleway', sans-serif;
 }
 
 .title{
@@ -34,12 +35,18 @@ body{
 
 .sub{
     background-color: red; !important;
-    margin: 3px; !important;
+    margin: 6px; !important;
     align-self: center; !important;
     border-color: #636b6f;
+    padding-left: 5px;
+    padding-right: 5px;
 }
 
 .sub:hover {
     background-color: #ff8c8c;
     border-color: #636b6f;
+}
+
+p{
+    margin-bottom: 0px;
 }

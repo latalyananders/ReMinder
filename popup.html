@@ -10,12 +10,17 @@
 <div class="title">
     <span class="re">Re</span>Minder
 </div>
-    <div>
+    <div id="notAuth">
         <input class="form-control inp" type="text" id="email" placeholder="E-mail">
         <input class="form-control inp" type="password" id="pass" placeholder="Пароль">
-        <input class="btn btn-primary sub" id="login" type="submit"/>
+        <p>Забыли пароль? <a id="reset" target="_blank" href="http://reminder.ddns.net/password/reset" >Восстановить</a></p>
+        <p>Нет аккаунта? <a target="_blank" href="http://reminder.ddns.net/register">Зарегистрируйтесь!</a></p>
+        <input class="btn btn-primary sub" id="login" type="submit" value="Войти"/>
     </div>
-<script></script>
+    <div id="Auth">
+
+    </div>
 <script type="text/javascript" src="scripts/popup.js"></script>
+<script type="text/javascript" src="scripts/init.js"></script>
 </body>
 </html>
