@@ -1,20 +1,6 @@
 var log=document.getElementById("login");
 log.addEventListener("click", function () {
-    var email=document.getElementById("email");
-    var pass=document.getElementById("pass");
-    console.log(email.value);
-    console.log(pass.value);
-    axios.post('http://95.68.204.234//oauth/token', {
-            client_id: 3,
-            client_secret: 'GWxj9V3I0GpLaUUzcPMug2qxrqxePTn4PAOjhnmk',
-            grant_type: 'password',
-            username: email.value,
-            password: pass.value,
-            scope: ''
-    })
-        .then(function (response) {
-            console.log(response.data);
-        });
+    login();
 });
 
 function isAuthenticated() {
@@ -28,7 +14,7 @@ document.addEventListener('DOMContentLoaded', function(){
     var email=document.getElementById("email");
     var pass=document.getElementById("pass");
     if(!isAuthenticated())
-        axios.post('http://95.68.204.234/oauth/token', {
+        axios.post('http://reminder.ddns.net/oauth/token', {
             client_id: 3,
             client_secret: 'GWxj9V3I0GpLaUUzcPMug2qxrqxePTn4PAOjhnmk',
             grant_type: 'password',
@@ -70,7 +56,7 @@ function destroyToken() {
 
 function startCheck(){
     setInterval(function cycle() {
-            axios.get('http://95.68.204.234/api/query', {
+            axios.get('http://reminder.ddns.net/api/query', {
                 headers: {
                     Authorization: "Bearer " + getToken()
                 }
@@ -83,9 +69,26 @@ function startCheck(){
 };
 
 function login(){
-    axios.post('http://95.68.204.234/oauth/token', data)
+
+    var email=document.getElementById("email");
+    var pass=document.getElementById("pass");
+    console.log(email.value);
+    console.log(pass.value);
+    axios.post('http://reminder.ddns.net//oauth/token', {
+        client_id: 3,
+        client_secret: 'GWxj9V3I0GpLaUUzcPMug2qxrqxePTn4PAOjhnmk',
+        grant_type: 'password',
+        username: email.value,
+        password: pass.value,
+        scope: ''
+    })
         .then(function (response) {
-            setToken(response.data.access_token, response.data.expires_in + Date.now())
+            setToken(response.data.access_token, response.data.expires_in + Date.now());
         });
+
+    // axios.post('http://reminder.ddns.net/oauth/token', data)
+    //     .then(function (response) {
+    //         setToken(response.data.access_token, response.data.expires_in + Date.now())
+    //     });
 };
 
