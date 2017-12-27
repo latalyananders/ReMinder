@@ -1,16 +1,6 @@
 var log=document.getElementById("login");
 log.addEventListener("click", function () {
     login();
-});
-
-function isAuthenticated() {
-    if(this.getToken())
-        return true;
-    else
-        return false;
-};
-
-document.addEventListener('DOMContentLoaded', function(){
     var email=document.getElementById("email");
     var pass=document.getElementById("pass");
     if(!isAuthenticated())
@@ -28,6 +18,17 @@ document.addEventListener('DOMContentLoaded', function(){
             });
     else
         startCheck();
+});
+
+function isAuthenticated() {
+    if(this.getToken())
+        return true;
+    else
+        return false;
+};
+
+document.addEventListener('DOMContentLoaded', function(){
+    
 });
 
 function setToken(token, expiration){
@@ -55,16 +56,29 @@ function destroyToken() {
 
 
 function startCheck(){
+    var title = document.getElementById("title");
+    var description = document.getElementById("description");
+    var date = document.getElementById("date");
+    var component = this;
     setInterval(function cycle() {
-            axios.get('http://reminder.ddns.net/api/query', {
+        if (!component.enable)
+            var autorisForm= document.getElementById("autorisForm");
+            autorisForm.classList.add("inv");
+            var taskForm= document.getElementById("taskForm");
+            taskForm.classList.remove("inv");
+            axios.get('http://reminder.ddns.net/api/tasks', {
                 headers: {
-                    Authorization: "Bearer " + getToken()
+                    Authorization: "Bearer " + component.getToken()
                 }
             })
                 .then(function(response) {
-                    console.log(response.data);
+                    console.log(response);
+                    title.innerText=response.data[1].title;
+                    description.innerText=response.data[1].description;
+                    var offset = new Date().getTimezoneOffset();
+                    var dateObj=new Date(parseInt(response.data[1].date)+offset*60*1000);
+                    date.innerText=dateObj.getFullYear()+"-"+(dateObj.getMonth()+1)+"-"+dateObj.getDate()+" "+dateObj.getHours()+":"+dateObj.getMinutes();
                 })
-
     }, 5000)
 };
 

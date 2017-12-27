@@ -5,20 +5,70 @@
     <script type="text/javascript" src="scripts/axios.min.js" charset="utf-8"></script>
     <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootswatch/4.0.0-beta.2/cosmo/bootstrap.min.css" />
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/style2.css">
 </head>
 <body>
-<div class="title">
-    <span class="re">Re</span>Minder
-</div>
-    <div id="notAuth">
-        <input class="form-control inp" type="text" id="email" placeholder="E-mail">
-        <input class="form-control inp" type="password" id="pass" placeholder="Пароль">
-        <p>Забыли пароль? <a id="reset" target="_blank" href="http://reminder.ddns.net/password/reset" >Восстановить</a></p>
-        <p>Нет аккаунта? <a target="_blank" href="http://reminder.ddns.net/register">Зарегистрируйтесь!</a></p>
-        <input class="btn btn-primary sub" id="login" type="submit" value="Войти"/>
-    </div>
-    <div id="Auth">
+    <div id="autorisForm">
+        <div class="title">
+            <span class="re">Re</span>Minder
+        </div>
+            <div id="notAuth">
+                <input class="form-control inp" type="text" id="email" placeholder="E-mail">
+                <input class="form-control inp" type="password" id="pass" placeholder="Пароль">
+                <p>Забыли пароль? <a id="reset" target="_blank" href="http://reminder.ddns.net/password/reset" >Восстановить</a></p>
+                <p>Нет аккаунта? <a target="_blank" href="http://reminder.ddns.net/register">Зарегистрируйтесь!</a></p>
+                <input class="btn btn-primary sub" id="login" type="submit" value="Войти"/>
+            </div>
+            <div id="Auth">
 
+            </div>
+    </div>
+    <div class="inv" id="taskForm">
+        <div class="head">
+            <p class="title" id="title">
+                Курсовая по КОПу
+            </p>
+            <p class="data" id="description">
+                Сверстать клиентскую часть и начать делать серверную часть
+            </p>
+            <p class="date" id="date">
+                2017-23-23
+            </p>
+        </div>     
+        <div class="button">
+            <table>
+                <tr>
+                    <td>
+                        <a>
+                            Ок
+                        </a>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <a>
+                            Выполнено
+                        </a>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <a>
+                            Отложить
+                        </a>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div class="bot">
+            <a href="#" class="link"> Перейти на сайт</a>
+            <select class="selectList">
+                <option>через 5 минут</option>
+                <option>через 15 минут</option>
+                <option>через 30 минут</option>
+                <option>через час</option>
+            </select>
+        </div>   
     </div>
 <script type="text/javascript" src="scripts/popup.js"></script>
 <script type="text/javascript" src="scripts/init.js"></script>
