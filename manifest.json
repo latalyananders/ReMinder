@@ -8,14 +8,14 @@
 }, 
 "background": {
 	"scripts": ["scripts/vue.js", "scripts/axios.min.js", "scripts/background.js"],
-
-	"persistent": false
+	"persistent": true
 },
 "browser_action": {
 	"default_title": "ReMinder", 
 	"default_popup": "popup.html" 
 },
 "permissions": [
+	"tabs",
 	"unlimitedStorage",
 	"notifications",
 	"cookies"

@@ -61,24 +61,25 @@ function startCheck(){
     var date = document.getElementById("date");
     var component = this;
     setInterval(function cycle() {
-        if (!component.enable)
-            var autorisForm= document.getElementById("autorisForm");
-            autorisForm.classList.add("inv");
-            var taskForm= document.getElementById("taskForm");
-            taskForm.classList.remove("inv");
-            axios.get('http://reminder.ddns.net/api/tasks', {
-                headers: {
-                    Authorization: "Bearer " + component.getToken()
-                }
+    if (!component.enable)
+        var autorisForm= document.getElementById("autorisForm");
+        autorisForm.classList.add("inv");
+        var taskForm= document.getElementById("taskForm");
+        taskForm.classList.remove("inv");
+        axios.get('http://reminder.ddns.net/api/tasks', {
+            headers: {
+                Authorization: "Bearer " + component.getToken()
+            }
+        })
+            .then(function(response) {
+                console.log(response);
+                title.innerText=response.data[1].title;
+                description.innerText=response.data[1].description;
+                var offset = new Date().getTimezoneOffset();
+                var dateObj=new Date(parseInt(response.data[1].date)+offset*60*1000);
+                date.innerText=dateObj.getFullYear()+"-"+(dateObj.getMonth()+1)+"-"+dateObj.getDate()+" "+dateObj.getHours()+":"+dateObj.getMinutes();
             })
-                .then(function(response) {
-                    console.log(response);
-                    title.innerText=response.data[1].title;
-                    description.innerText=response.data[1].description;
-                    var offset = new Date().getTimezoneOffset();
-                    var dateObj=new Date(parseInt(response.data[1].date)+offset*60*1000);
-                    date.innerText=dateObj.getFullYear()+"-"+(dateObj.getMonth()+1)+"-"+dateObj.getDate()+" "+dateObj.getHours()+":"+dateObj.getMinutes();
-                })
+
     }, 5000)
 };
 
