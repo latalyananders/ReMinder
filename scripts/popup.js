@@ -1,6 +1,19 @@
 var log=document.getElementById("login");
 log.addEventListener("click", function () {
     login();
+
+});
+
+var logout=document.getElementById("logout");
+logout.addEventListener("click", function () {
+    destroyToken();
+    document.getElementById("notAuth").style.display = 'inherit';
+    document.getElementById("Auth").style.display = 'none';
+});
+
+var redirect=document.getElementById("redirect");
+redirect.addEventListener("click", function () {
+    window.open("http://reminder.ddns.net/tasks/create");
 });
 
 function isAuthenticated() {
@@ -26,8 +39,11 @@ document.addEventListener('DOMContentLoaded', function(){
                 setToken(response.data.access_token, response.data.expires_in + Date.now());
                 startCheck();
             });
-    else
+    else{
         startCheck();
+        document.getElementById("notAuth").style.display = 'none';
+        document.getElementById("Auth").style.display = 'inherit';
+    }
 });
 
 function setToken(token, expiration){
@@ -74,7 +90,7 @@ function login(){
     var pass=document.getElementById("pass");
     console.log(email.value);
     console.log(pass.value);
-    axios.post('http://reminder.ddns.net//oauth/token', {
+    axios.post('http://reminder.ddns.net/oauth/token', {
         client_id: 3,
         client_secret: 'GWxj9V3I0GpLaUUzcPMug2qxrqxePTn4PAOjhnmk',
         grant_type: 'password',
@@ -84,11 +100,12 @@ function login(){
     })
         .then(function (response) {
             setToken(response.data.access_token, response.data.expires_in + Date.now());
-        });
-
-    // axios.post('http://reminder.ddns.net/oauth/token', data)
-    //     .then(function (response) {
-    //         setToken(response.data.access_token, response.data.expires_in + Date.now())
-    //     });
+            document.getElementById("message").style.display = 'none';
+            document.getElementById("notAuth").style.display = 'none';
+            document.getElementById("Auth").style.display = 'inherit';
+        })
+        .catch(function () {
+            document.getElementById("message").style.display = 'inherit';
+    })
 };
 

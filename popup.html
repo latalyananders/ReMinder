@@ -5,22 +5,26 @@
     <script type="text/javascript" src="scripts/axios.min.js" charset="utf-8"></script>
     <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootswatch/4.0.0-beta.2/cosmo/bootstrap.min.css" />
     <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css?family=Pacifico" rel="stylesheet">
 </head>
-<body>
+<body link="red">
 <div class="title">
     <span class="re">Re</span>Minder
 </div>
     <div id="notAuth">
-        <input class="form-control inp" type="text" id="email" placeholder="E-mail">
+        <p id="message" class="message">Неверное имя пользователя или пароль!</p>
+        <input class="form-control inp" type="text" id="email" placeholder="E-Mail адрес">
         <input class="form-control inp" type="password" id="pass" placeholder="Пароль">
         <p>Забыли пароль? <a id="reset" target="_blank" href="http://reminder.ddns.net/password/reset" >Восстановить</a></p>
         <p>Нет аккаунта? <a target="_blank" href="http://reminder.ddns.net/register">Зарегистрируйтесь!</a></p>
         <input class="btn btn-primary sub" id="login" type="submit" value="Войти"/>
     </div>
-    <div id="Auth">
-
+    <div id="Auth" class="auth">
+        <p>Вас приветствует <span class="re">Re</span>Minder!</p>
+        <input class="btn btn-primary sub" id="redirect" type="submit" value="+ Добавить задачу"/><br>
+        <input class="btn btn-primary sub" id="logout" type="submit" value="Выход"/>
     </div>
 <script type="text/javascript" src="scripts/popup.js"></script>
-<script type="text/javascript" src="scripts/init.js"></script>
+<script type="text/javascript" src="scripts/background.js"></script>
 </body>
 </html>
