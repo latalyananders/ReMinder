@@ -1,6 +1,29 @@
 var log=document.getElementById("login");
 log.addEventListener("click", function () {
     login();
+
+});
+
+var logout=document.getElementById("logout");
+logout.addEventListener("click", function () {
+    destroyToken();
+    document.getElementById("notAuth").style.display = 'inherit';
+    document.getElementById("Auth").style.display = 'none';
+});
+
+var redirect=document.getElementById("redirect");
+redirect.addEventListener("click", function () {
+    window.open("http://reminder.ddns.net/tasks/create");
+});
+
+function isAuthenticated() {
+    if(this.getToken())
+        return true;
+    else
+        return false;
+};
+
+document.addEventListener('DOMContentLoaded', function(){
     var email=document.getElementById("email");
     var pass=document.getElementById("pass");
     if(!isAuthenticated())
@@ -16,19 +39,11 @@ log.addEventListener("click", function () {
                 setToken(response.data.access_token, response.data.expires_in + Date.now());
                 startCheck();
             });
-    else
+    else{
         startCheck();
-});
-
-function isAuthenticated() {
-    if(this.getToken())
-        return true;
-    else
-        return false;
-};
-
-document.addEventListener('DOMContentLoaded', function(){
-    
+        document.getElementById("notAuth").style.display = 'none';
+        document.getElementById("Auth").style.display = 'inherit';
+    }
 });
 
 function setToken(token, expiration){
@@ -56,29 +71,15 @@ function destroyToken() {
 
 
 function startCheck(){
-    var title = document.getElementById("title");
-    var description = document.getElementById("description");
-    var date = document.getElementById("date");
-    var component = this;
     setInterval(function cycle() {
-    if (!component.enable)
-        var autorisForm= document.getElementById("autorisForm");
-        autorisForm.classList.add("inv");
-        var taskForm= document.getElementById("taskForm");
-        taskForm.classList.remove("inv");
-        axios.get('http://reminder.ddns.net/api/tasks', {
-            headers: {
-                Authorization: "Bearer " + component.getToken()
-            }
-        })
-            .then(function(response) {
-                console.log(response);
-                title.innerText=response.data[1].title;
-                description.innerText=response.data[1].description;
-                var offset = new Date().getTimezoneOffset();
-                var dateObj=new Date(parseInt(response.data[1].date)+offset*60*1000);
-                date.innerText=dateObj.getFullYear()+"-"+(dateObj.getMonth()+1)+"-"+dateObj.getDate()+" "+dateObj.getHours()+":"+dateObj.getMinutes();
+            axios.get('http://reminder.ddns.net/api/query', {
+                headers: {
+                    Authorization: "Bearer " + getToken()
+                }
             })
+                .then(function(response) {
+                    console.log(response.data);
+                })
 
     }, 5000)
 };
@@ -89,7 +90,7 @@ function login(){
     var pass=document.getElementById("pass");
     console.log(email.value);
     console.log(pass.value);
-    axios.post('http://reminder.ddns.net//oauth/token', {
+    axios.post('http://reminder.ddns.net/oauth/token', {
         client_id: 3,
         client_secret: 'GWxj9V3I0GpLaUUzcPMug2qxrqxePTn4PAOjhnmk',
         grant_type: 'password',
@@ -99,11 +100,12 @@ function login(){
     })
         .then(function (response) {
             setToken(response.data.access_token, response.data.expires_in + Date.now());
-        });
-
-    // axios.post('http://reminder.ddns.net/oauth/token', data)
-    //     .then(function (response) {
-    //         setToken(response.data.access_token, response.data.expires_in + Date.now())
-    //     });
+            document.getElementById("message").style.display = 'none';
+            document.getElementById("notAuth").style.display = 'none';
+            document.getElementById("Auth").style.display = 'inherit';
+        })
+        .catch(function () {
+            document.getElementById("message").style.display = 'inherit';
+    })
 };
 

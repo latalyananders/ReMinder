@@ -1,12 +1,11 @@
 body{
     text-align: center;
-    width: 400px;
-    background-color: #fcfcfc;
-    font-family: 'Raleway', sans-serif;
+    width: 300px;
+    background-color: #fafafa;
+    font-family: 'Pacifico', cursive;
+    font-size: 18px;
 }
-.inv{
-    display: none;
-}
+
 .title{
     text-align: center;
     font-size: 24px;
@@ -14,7 +13,7 @@ body{
     padding-right: 50px;
     padding-top: 6px;
     color: #636b6f;
-    font-family: 'Raleway', sans-serif;
+    font-family: 'Pacifico', cursive;
 }
 
 .re{
@@ -32,7 +31,7 @@ body{
 }
 
 .btn-primary{
-    background-color: black; !important;
+    background-color: green; !important;
 }
 
 .sub{
@@ -40,8 +39,8 @@ body{
     margin: 6px; !important;
     align-self: center; !important;
     border-color: #636b6f;
-    padding-left: 5px;
-    padding-right: 5px;
+    padding-left: 5px; !important;
+    padding-right: 5px; !important;
 }
 
 .sub:hover {
@@ -49,6 +48,38 @@ body{
     border-color: #636b6f;
 }
 
+.sub:active{
+    color: red;
+}
+
 p{
-    margin-bottom: 0px;
+    margin: 5px;
+}
+
+.auth{
+    display: none;
+}
+
+.message{
+    display: none;
+}
+
+a:visited{
+    color: red;
+}
+
+a:active{
+    color: red; !important;
+}
+
+a:hover{
+    color: red;
+}
+
+a{
+    color: red;
+}
+
+input:active{
+    color: red;
 }

@@ -1,8 +1,7 @@
 var responseGlob;
-console.log("Privet");
 setInterval(function cycle() {
     var month =['январь','февраль','март','апрель','май','июнь','июль','август','сентябрь',
-    'октябрь','ноябрь','декабрь']
+        'октябрь','ноябрь','декабрь']
     var notifOpt
     axios.get('http://reminder.ddns.net/api/query', {
         headers: {
@@ -24,37 +23,36 @@ setInterval(function cycle() {
                 var notifOpt={
                     type: "basic",
                     iconUrl: "128.png",
+                    requireInteraction : true,
                     title: response.data.topic.name+": "+response.data.title,
                     message: response.data.description+" "+strDate,
                     buttons: [
                         { title: 'Выполнено' },
-                        { title: 'Отложить' }
+                        { title: 'Отложить на час' }
                     ]}
-                chrome.notifications.create("Notrif1",notifOpt) 
-                
-            }catch(err){
+                    chrome.notifications.create("notifRegul",notifOpt)
+                }               
+            catch(err){
                 console.log(err);
-            }        
+            }
         })
 }, 3000)
 
 function deleteTask(id){
     axios.delete('http://reminder.ddns.net/api/tasks/'+id, {
-    headers: {
-        Authorization: "Bearer " + getToken()
-    }
+        headers: {
+            Authorization: "Bearer " + getToken()
+        }
     })
         .then(function(response) {
             console.log(response);
         })
 }
 
-function updateTask(data){
+function updateTask(data,minutes){
     var notif=data.notify_date;
-    console.log(data.minuts);
-    notif=parseInt(notif)+data.minuts*60*1000;
-    console.log(notif);
-axios({
+    notif=parseInt(notif)+minutes*60*1000;
+    axios({
         method: 'put',
         url: 'http://reminder.ddns.net/api/tasks/'+data.id,
         headers: {
@@ -63,19 +61,19 @@ axios({
         }
     })
         .then(function(response) {
-        console.log(response);
-        console.log(data.notify_date)
-    });
+            console.log(response);
+            console.log(data.notify_date)
+        });
 }
 
 chrome.notifications.onButtonClicked.addListener(function callbackD(notificationId,buttonIndex){
-    if(buttonIndex==0){
-        console.log("Выполнено")
-        deleteTask(responseGlob.data.id)
-    }else if(buttonIndex==1){
-        console.log("Отложить")
-        updateTask(responseGlob.data)
-    }
+        if(buttonIndex==0){
+            console.log("Выполнено")
+            deleteTask(responseGlob.data.id)
+        }else if(buttonIndex==1){
+            console.log("Отложить на час")
+            updateTask(responseGlob.data,60)
+        }
 });
 function getToken() {
     var token = localStorage.getItem('token');
