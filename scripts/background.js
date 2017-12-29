@@ -1,10 +1,10 @@
 var responseGlob;
-console.log("Privet");
 
 setInterval(function cycle() {
     var month =['январь','февраль','март','апрель','май','июнь','июль','август','сентябрь',
         'октябрь','ноябрь','декабрь'];
     var notifOpt;
+    if(getToken() != null)
     axios.get('http://reminder.ddns.net/api/query', {
         headers: {
             Authorization: "Bearer " + getToken()
