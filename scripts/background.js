@@ -11,6 +11,7 @@ setInterval(function cycle() {
     })
         .then(function(response) {
             try{
+                //merge
                 console.log(response);
                 responseGlob=response;
                 var dateObj=new Date(parseInt(response.data.notify_date));
