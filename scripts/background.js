@@ -20,12 +20,15 @@ setInterval(function cycle() {
                 if(minutes<10)
                     minutes="0"+minutes;
                 var strDate=dateObj.getFullYear()+" "+(month[dateObj.getMonth()])+" "+dateObj.getDate()+" "+hours+":"+minutes;
+                var description = "";
+                if(response.data.description != null)
+                    description = response.data.description
                 var notifOpt={
                     type: "basic",
                     iconUrl: "128.png",
                     requireInteraction : true,
                     title: response.data.topic.name+": "+response.data.title,
-                    message: response.data.description+" "+strDate,
+                    message: description+" "+strDate,
                     buttons: [
                         { title: 'Выполнено' },
                         { title: 'Отложить на час' }
@@ -50,7 +53,7 @@ function deleteTask(id){
 }
 
 function updateTask(data,minutes){
-    var notif=data.notify_date;
+    var notif= new Date().getTime();
     notif=parseInt(notif)+minutes*60*1000;
     axios({
         method: 'put',
