@@ -1,18 +1,5 @@
-<table width="100%">
-      <tr>
-          <td align="left" width="70">
-                <a href = "http://reminder.ddns.net/">
-                <img  src="https://raw.githubusercontent.com/latalyananders/ReMinder/master/128.png"
-                      height="64">
-                </a>
-          </td>
-      </tr>
-      <tr>
-      <td>
-            <strong><a href="http://reminder.ddns.net/">ReMinder</a></strong>: Расширение для браузеров на "движке" Chrome. Позволяет создавать напомниания
-      </td>
-      </tr>
-</table>
+#ReMinder
+Расширение для браузеров на "движке" Chrome. Позволяет создавать напомниания.
 
 ## Установка
 
