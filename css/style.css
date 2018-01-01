@@ -2,7 +2,7 @@ body{
     text-align: center;
     width: 300px;
     background-color: #fafafa;
-    font-family: 'Pacifico', cursive;
+    font-family: Arial,Helvetica Neue,Helvetica,sans-serif;
     font-size: 18px;
 }
 
@@ -12,8 +12,18 @@ body{
     padding-left: 50px;
     padding-right: 50px;
     padding-top: 6px;
-    color: #636b6f;
+
+}
+
+.menu{
+    text-align: left;
+
+}
+
+.logo{
     font-family: 'Pacifico', cursive;
+    color: #636b6f;
+    cursor: pointer;
 }
 
 .re{
@@ -21,35 +31,11 @@ body{
 }
 
 .form-control{
-    width: 94%; !important;
     text-align: center; !important;
 }
 
-.inp{
-    margin: 10px; !important
-    width: 70%; !important;
-}
-
-.btn-primary{
-    background-color: green; !important;
-}
-
-.sub{
-    background-color: red; !important;
-    margin: 6px; !important;
-    align-self: center; !important;
-    border-color: #636b6f;
-    padding-left: 5px; !important;
-    padding-right: 5px; !important;
-}
-
-.sub:hover {
-    background-color: #ff8c8c;
-    border-color: #636b6f;
-}
-
-.sub:active{
-    color: red;
+.btn-danger{
+    background-color: red;
 }
 
 p{
@@ -62,6 +48,12 @@ p{
 
 .message{
     display: none;
+    text-align: left;
+    font-size: 14px;
+}
+
+.links{
+    font-size: 14px;
 }
 
 a:visited{
@@ -80,6 +72,4 @@ a{
     color: red;
 }
 
-input:active{
-    color: red;
-}
+

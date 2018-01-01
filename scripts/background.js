@@ -2,7 +2,6 @@ var responseGlob;
 // import * as library from 'scripts/library';
 // console.log(library.query());
 setInterval(function cycle() {
-    console.log(library);
     responseGlob = library.query();
 }, 3000)
 

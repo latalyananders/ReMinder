@@ -116,7 +116,16 @@ var library = function () {
                 })
     };
 
-
+    function login(login, password) {
+        return axios.post('http://reminder.ddns.net/oauth/token', {
+            client_id: 3,
+            client_secret: 'GWxj9V3I0GpLaUUzcPMug2qxrqxePTn4PAOjhnmk',
+            grant_type: 'password',
+            username: login,
+            password: password,
+            scope: ''
+        })
+    }
 
     return{
         getToken,
@@ -125,7 +134,8 @@ var library = function () {
         setToken,
         deleteTask,
         updateTask,
-        query
+        query,
+        login
     }
 };
 

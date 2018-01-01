@@ -4,27 +4,65 @@
     <meta charset="UTF-8">
     <script type="text/javascript" src="scripts/axios.min.js" charset="utf-8"></script>
     <script type="text/javascript" src="scripts/library.js" charset="utf-8"></script>
-    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootswatch/4.0.0-beta.2/cosmo/bootstrap.min.css" />
+    <!--<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootswatch/4.0.0-beta.2/cosmo/bootstrap.min.css" />-->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet" href="css/style.css">
     <link href="https://fonts.googleapis.com/css?family=Pacifico" rel="stylesheet">
 </head>
 <body link="red">
-<div class="title">
-    <span class="re">Re</span>Minder
-</div>
+
+    <div class="title">
+        <span id="logo" class="logo" >
+            <span class="re">Re</span>Minder
+        </span>
+    </div>
+
     <div id="notAuth">
-        <p id="message" class="message">Неверное имя пользователя или пароль!</p>
-        <input class="form-control inp" type="text" id="email" placeholder="E-Mail адрес">
-        <input class="form-control inp" type="password" id="pass" placeholder="Пароль">
-        <p>Забыли пароль? <a id="reset" target="_blank" href="http://reminder.ddns.net/password/reset" >Восстановить</a></p>
-        <p>Нет аккаунта? <a target="_blank" href="http://reminder.ddns.net/register">Зарегистрируйтесь!</a></p>
-        <input class="btn btn-primary sub" id="login" type="submit" value="Войти"/>
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-6 col-md-4 col-md-offset-4">
+                    <div id="message" class="alert alert-danger message" role="alert">Неверное имя пользователя или пароль.</div>
+                    <input class="form-control" type="text" id="email" placeholder="E-Mail адрес">
+                    <input class="form-control" type="password" id="pass" placeholder="Пароль">
+
+                    <button class="btn  btn-lg  btn-danger btn-block" id="login">
+                        Войти
+                        <span class="glyphicon glyphicon-log-in"></span>
+                    </button>
+
+                    <div class="links">
+                        <p>Забыли пароль? <a target="_blank" href="http://reminder.ddns.net/password/reset">Восстановить</a></p>
+                        <p>Нет аккаунта? <a target="_blank" href="http://reminder.ddns.net/register">Зарегистрироваться</a></p>
+                    </div>
+
+                </div>
+            </div>
+        </div>
     </div>
+
     <div id="Auth" class="auth">
-        <p>Вас приветствует <span class="re">Re</span>Minder!</p>
-        <input class="btn btn-primary sub" id="redirect" type="submit" value="+ Добавить задачу"/><br>
-        <input class="btn btn-primary sub" id="logout" type="submit" value="Выход"/>
+        <nav class="navbar navbar-default sidebar" role="navigation">
+            <div class="container-fluid">
+                <div class="menu" id="bs-sidebar-navbar-collapse-1">
+                    <ul class="nav navbar-nav">
+                        <li>
+                            <a href="#" id="redirect">
+                                Добавить задачу
+                                <span class="pull-right  showopacity glyphicon glyphicon-plus"></span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" id="logout">
+                                Выйти
+                                <span class="pull-right  showopacity glyphicon glyphicon-log-out"></span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
     </div>
+
 <script type="text/javascript" src="scripts/popup.js"></script>
 <script type="text/javascript" src="scripts/background.js"></script>
 </body>
