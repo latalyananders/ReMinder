@@ -39,7 +39,7 @@ var library = function () {
             })
     };
 
-    function updateTask(data,minutes){
+    function updateTask(data, minutes){
         var notif= new Date().getTime();
         notif=parseInt(notif)+minutes*60*1000;
         axios({
@@ -140,24 +140,3 @@ var library = function () {
 };
 
 window.library = new library();
-
-//
-// var test=function(){
-//     function testMethod() {
-//
-//     }
-//     function testMethod1() {
-//
-//     }
-//     this.method3 = function(){
-//
-//     }
-//     return {
-//         testMethod,
-//         "newNameMethod":testMethod1
-//     }
-// }
-//
-// window.test=new test();
-//
-// window.test.newNameMethod()

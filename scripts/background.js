@@ -1,9 +1,8 @@
 var responseGlob;
-// import * as library from 'scripts/library';
-// console.log(library.query());
+
 setInterval(function cycle() {
     responseGlob = library.query();
-}, 3000)
+}, 60000)
 
 
 chrome.notifications.onButtonClicked.addListener(function callbackD(notificationId,buttonIndex){
