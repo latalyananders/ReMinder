@@ -8,7 +8,7 @@
     "128": "128.png"
   },
   "background": {
-    "scripts": ["scripts/library.js", "scripts/axios.min.js", "scripts/background.js"],
+    "scripts": ["scripts/library.js", "scripts/background.js"],
     "persistent": true
   },
   "browser_action": {
