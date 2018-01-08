@@ -1,10 +1,10 @@
 document.getElementById("login").addEventListener("click", function () {
     xhr = library.login(document.getElementById("email").value, document.getElementById("pass").value);
     xhr.onreadystatechange  = function () {
-        if (this.readyState != 4) return;
+        if (this.readyState !== 4) return;
 
-        if (this.status == "200") {
-            var response = JSON.parse(xhr.responseText);
+        if (this.status === 200) {
+            let response = JSON.parse(xhr.responseText);
             library.setToken(response.access_token, response.expires_in + Date.now());
             document.getElementById("message").style.display = 'none';
             document.getElementById("notAuth").style.display = 'none';

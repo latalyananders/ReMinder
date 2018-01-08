@@ -1,13 +1,11 @@
-setInterval(function cycle() {
+setInterval(function cycle(){
     library.query();
 }, 3000)
 
 chrome.notifications.onButtonClicked.addListener(function callbackD(notificationId,buttonIndex){
-    if(buttonIndex==0){
-        console.log("Выполнено")
+    if(buttonIndex === 0){
         library.deleteTask(query.id)
-    }else if(buttonIndex==1){
-        console.log("Отложить")
+    }else if(buttonIndex === 1){
         library.updateTask(query,60)
     }
 });
