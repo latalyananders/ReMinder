@@ -84,9 +84,7 @@ var library = function () {
                             {title: 'Отложить'}
                         ]
                     };
-                    chrome.notifications.create("Notrif1", notifOpt, function () {
-
-                    });
+                    chrome.notifications.create("Notrif1", notifOpt, function () {});
 
                     window.query = response;
                 }
