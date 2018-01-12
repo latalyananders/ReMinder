@@ -46,9 +46,8 @@ var library = function () {
         xhr.send(null);
     }
 
-    function query() {
-        const month = ['январь', 'февраль', 'март', 'апрель', 'май', 'июнь', 'июль', 'август', 'сентябрь',
-            'октябрь', 'ноябрь', 'декабрь'];
+    function query(notificate) {
+
         if(getToken() != null) {
             const url = 'http://reminder.ddns.net/api/query';
             const xhr = new XMLHttpRequest();
@@ -60,33 +59,8 @@ var library = function () {
 
                 if (this.status === 200 && this.responseText) {
                     const response = JSON.parse(this.responseText);
-
-                    const dateObj = new Date(parseInt(response.notify_date));
-                    let hours = dateObj.getHours();
-                    if (hours < 10)
-                        hours = "0" + hours;
-                    let minutes = dateObj.getMinutes();
-                    if (minutes < 10)
-                        minutes = "0" + minutes;
-                    const strDate = dateObj.getFullYear() + " " + (month[dateObj.getMonth()]) + " " + dateObj.getDate() + " " + hours + ":" + minutes;
-
-                    let description = "";
-                    if (response.description != null)
-                        description = response.description;
-
-                    const notifOpt = {
-                        type: "basic",
-                        iconUrl: "128.png",
-                        title: response.topic.name + ": " + response.title,
-                        message: description + " " + strDate,
-                        buttons: [
-                            {title: 'Выполнено'},
-                            {title: 'Отложить'}
-                        ]
-                    };
-                    chrome.notifications.create("Notrif1", notifOpt, function () {});
-
                     window.query = response;
+                    notificate(response);
                 }
             };
             xhr.send(null);
